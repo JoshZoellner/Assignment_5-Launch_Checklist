@@ -50,14 +50,18 @@ window.addEventListener("load", function() {
                launchStatus.innerHTML = `Shuttle not ready for launch.`;
                launchStatus.style.color = "red";
                event.preventDefault();
-            } 
+            } else {
+               fuelStatus.innerHTML = `Fuel level high enough for launch.`;
+            }
             if (cargoMass.value > 10000){
                cargoStatus.innerHTML = `There is too much mass for the shuttle to take off.`;
                faultyItems.style.visibility = "visible";
                launchStatus.innerHTML = `Shuttle not ready for launch.`;
                launchStatus.style.color = "red";
                event.preventDefault();
-            } 
+            } else {
+               cargoStatus.innerHTML = `Cargo mass low enough for launch.`;
+            }
             if (fuelLevel.value > 9999 && cargoMass.value < 9999){               
                launchStatus.innerHTML = `Shuttle is ready for launch.`;
                launchStatus.style.color = "green";
