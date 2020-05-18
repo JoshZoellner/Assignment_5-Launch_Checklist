@@ -12,7 +12,7 @@
 <img src="${}">
 */
 
-
+let myPlanet;
 
 window.addEventListener("load", function() {
    let form = document.querySelector("form");
@@ -22,6 +22,13 @@ window.addEventListener("load", function() {
    let copilotStatus = document.getElementById("copilotStatus");
    let fuelStatus = document.getElementById("fuelStatus");
    let cargoStatus = document.getElementById("cargoStatus");
+
+   fetch("https://handlers.education.launchcode.org/static/planets.json")
+      .then(response => response.json())
+      .then(data => {
+         this.myPlanet = data[0];
+      });
+         
       form.addEventListener("submit", function(event) {
          let pilotName = document.querySelector("input[name=pilotName]");
          let copilotName = document.querySelector("input[name=copilotName]");
@@ -63,7 +70,7 @@ window.addEventListener("load", function() {
             } else {
                cargoStatus.innerHTML = `Cargo mass low enough for launch.`;
             }
-            
+
             if (fuelLevel.value > 9999 && cargoMass.value < 9999){               
                launchStatus.innerHTML = `Shuttle is ready for launch.`;
                launchStatus.style.color = "green";
