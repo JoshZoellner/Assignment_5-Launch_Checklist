@@ -1,19 +1,3 @@
-// Write your JavaScript code here!
-
-/* This block of code shows how to format the HTML once you fetch some planetary JSON!
-<h2>Mission Destination</h2>
-<ol>
-   <li>Name: ${}</li>
-   <li>Diameter: ${}</li>
-   <li>Star: ${}</li>
-   <li>Distance from Earth: ${}</li>
-   <li>Number of Moons: ${}</li>
-</ol>
-<img src="${}">
-*/
-
-let myPlanet;
-
 window.addEventListener("load", function() {
    let form = document.querySelector("form");
    let launchStatus = document.getElementById("launchStatus");
@@ -26,7 +10,19 @@ window.addEventListener("load", function() {
    fetch("https://handlers.education.launchcode.org/static/planets.json")
       .then(response => response.json())
       .then(data => {
-         this.myPlanet = data[0];
+         let myPlanet = data[0];
+         let missionTarget = document.getElementById("missionTarget");
+         missionTarget.innerHTML = `
+         <h2>Mission Destination</h2>
+         <ol>
+            <li>Name: ${myPlanet.name}</li>
+            <li>Diameter: ${myPlanet.diameter}</li>
+            <li>Star: ${myPlanet.star}</li>
+            <li>Distance from Earth: ${myPlanet.distance}</li>
+            <li>Number of Moons: ${myPlanet.moons}</li>
+         </ol>
+         <img src="${myPlanet.image}">
+         `;
       });
          
       form.addEventListener("submit", function(event) {
